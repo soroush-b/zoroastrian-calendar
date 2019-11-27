@@ -4,10 +4,25 @@
 }
 .calcRow span {
   display: inline-block;
-  min-width: 110px;
+}
+.wXSmall {
+  width: 50px;
+}
+.wSmall {
+  width: 100px;
+}
+.wMedium {
+  width: 120px;
+}
+.wLarge {
+  width: 150px;
 }
 .calcRow {
-  background-color: #f1f1f1;
-  border-bottom: 1px solid #dadada;
-  padding: 10px 20px;
+  background-color: #f2f5ff;
+  padding: 5px 35px;
+  margin: 5px 10px;
+  border-radius: 32px;
+}
+.calcRow.even {
+  background-color: #f5f5f5;
 }

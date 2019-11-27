@@ -3,7 +3,25 @@ import moment from "moment-jalaali";
 import _ from "lodash";
 import './App.css';
 moment.loadPersian()
-
+const persianNumb = (text)=>{
+  const obj ={
+    1:'۱',
+    2:'۲',
+    3:'۳',
+    4:'۴',
+    5:'۵',
+    6:'۶',
+    7:'۷',
+    8:'۸',
+    9:'۹',
+    0:'۰',
+  }
+  let newStr = text.toString();
+  for (let x in obj) {
+    newStr = newStr.replace(new RegExp(x, 'g'), obj[x]);
+  }
+  return newStr;
+}
 const ZDays = [
   { en: "urmazd", fr: "اورمزد" },
   { en: "vahman", fr: "بهمن" },
@@ -49,7 +67,10 @@ const DayOfYear= today.format('jDDD');
 const currMonth = Math.ceil(DayOfYear/30);
 const todayIdx = (DayOfYear-1) % 30;
 const currMonthArr = (currMonth)=>  _.range((currMonth*30)-29,(currMonth*30)+1).map(day=>moment().add(day-DayOfYear,'day'))
-
+const isEven = (n) =>{
+  n = Number(n);
+  return n === 0 || !!(n && !(n%2));
+}
 class App extends Component {
   state = {
     month: currMonth,
@@ -83,13 +104,13 @@ class App extends Component {
         <button onClick={this.prevMonth}>قبلی</button>
       </div>
       {monthArr.map((day,idx)=> (
-        <div className={`calcRow`} key={'zDay'+idx}>
-          <span>{idx+1}</span>
-          <span>{ZDays[idx].fr}</span>
-          <span>{day.format('dddd')}</span>
-          <span>{day.format('D MMMM')}</span>
-          <span>{day.format("jD jMMMM")}</span>
-          <span>{NaborsDay.includes(idx) && <p>نبر</p>}</span>
+        <div className={`calcRow${isEven(idx) ? ' even' : ''}`} key={'zDay'+idx}>
+          <span className="wXSmall">{persianNumb(idx+1)}</span>
+          <span className="wSmall">{ZDays[idx].fr}</span>
+          <span className="wSmall">{day.format('dddd')}</span>
+          <span className="wLarge">{persianNumb(day.format('D MMMM YYYY'))}</span>
+          <span className="wMedium">{persianNumb(day.format("jD jMMMM jYY"))}</span>
+          <span className="wLarge">{NaborsDay.includes(idx) && <p>نبر</p>}</span>
         </div>
       ))}
       </div>
