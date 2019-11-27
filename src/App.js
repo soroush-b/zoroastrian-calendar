@@ -105,7 +105,7 @@ class App extends Component {
       </div>
       {monthArr.map((day,idx)=> (
         <div className={`calcRow${isEven(idx) ? ' even' : ''}`} key={'zDay'+idx}>
-          <span className="wXSmall">{persianNumb(idx+1)}</span>
+          <span className="dayIndex">{persianNumb(idx+1)}</span>
           <span className="wSmall">{ZDays[idx].fr}</span>
           <span className="wSmall">{day.format('dddd')}</span>
           <span className="wLarge">{persianNumb(day.format('D MMMM YYYY'))}</span>
