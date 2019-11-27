@@ -66,21 +66,28 @@ const today = moment();
 const DayOfYear= today.format('jDDD');
 const currMonth = Math.ceil(DayOfYear/30);
 const todayIdx = (DayOfYear-1) % 30;
-const currMonthArr = (currMonth)=>  _.range((currMonth*30)-29,(currMonth*30)+1).map(day=>moment().add(day-DayOfYear,'day'))
 const isEven = (n) =>{
   n = Number(n);
   return n === 0 || !!(n && !(n%2));
 }
+const generateMonth = (month)=>{
+  const currMonth = month%13;
+  const isPanji = currMonth === 0;
+  const year = Math.floor(month*30/365);
+  const from = isPanji ? 361 : (currMonth*30)-29 + (year*365);
+  const to = isPanji ? 366 : (currMonth*30)+1  + (year*365);
+  const monthArr = _.range(from,to).map(day=>moment().add(day-DayOfYear,'day'));
+  console.log('monthhhhh',month, currMonth,isPanji,year,monthArr)
+    return {
+      month,
+      monthArr,
+      isPanji,
+    }
+}
 class App extends Component {
-  state = {
-    month: currMonth,
-    monthArr:currMonthArr(currMonth)
-  };
+  state = {...generateMonth(currMonth)}
   setMonth=(month)=>{
-    this.setState({
-      month: month,
-      monthArr:currMonthArr(month)
-    })
+    this.setState({...generateMonth(month)})
   }
   nextMonth=()=>{
     const {month} = this.state;
@@ -96,21 +103,33 @@ class App extends Component {
     this.setState({ dateIdx: idx });
   };
   render() {
-    const {monthArr} = this.state;
+    const {monthArr, isPanji} = this.state;
     return (
       <div className="calcCont">
       <div className="navbar">
         <button onClick={this.nextMonth}>بعدی</button>
         <button onClick={this.prevMonth}>قبلی</button>
       </div>
+      <div className="calcRow calcHeader">
+          <span className="dayIndex">روز</span>
+          <span className="wSmall">نام روز</span>
+          <span className="wSmall">هفته</span>
+          <span className="wLarge">میلادی</span>
+          <span className="wLarge">شمسی</span>
+          <span className="wLarge">روادید</span>
+        </div>
+
       {monthArr.map((day,idx)=> (
         <div className={`calcRow${isEven(idx) ? ' even' : ''}`} key={'zDay'+idx}>
           <span className="dayIndex">{persianNumb(idx+1)}</span>
-          <span className="wSmall">{ZDays[idx].fr}</span>
+          <span className="wSmall">{isPanji ? extraZdays[idx].fr : ZDays[idx].fr}</span>
           <span className="wSmall">{day.format('dddd')}</span>
           <span className="wLarge">{persianNumb(day.format('D MMMM YYYY'))}</span>
-          <span className="wMedium">{persianNumb(day.format("jD jMMMM jYY"))}</span>
-          <span className="wLarge">{NaborsDay.includes(idx) && <p>نبر</p>}</span>
+          <span className="wLarge">{persianNumb(day.format("jD jMMMM jYYYY"))}</span>
+          <span className="wLarge">
+            {NaborsDay.includes(idx) && !isPanji && <span className="naborDay">نبر</span>}
+            {isPanji && <span className="panjiDay">پنجی</span>}
+          </span>
         </div>
       ))}
       </div>

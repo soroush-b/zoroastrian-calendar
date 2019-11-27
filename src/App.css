@@ -18,27 +18,25 @@
   width: 150px;
 }
 .calcRow {
-  background-color: #f2f5ff;
+  background-color: #f0fbfc;
   padding: 5px 35px;
   margin: 5px 10px;
   border-radius: 32px;
 }
 .calcRow.even {
-  background-color: #f5f5f5;
+  background-color: #fff;
 }
 .dayIndex {
-  background-color: #e66f9b;
+  background-color: #9fe5ea;
   color: #fff;
   font-weight: 800;
   border-radius: 50%;
   text-align: center;
   width: 35px;
-  display: inline-flex !important;
   height: 35px;
-  text-align: center;
-  justify-content: center;
   vertical-align: middle;
   margin-left: 20px;
+  line-height: 35px;
 }
 .navbar {
   text-align: center;
@@ -46,4 +44,25 @@
 }
 .navbar button {
   outline: none;
+}
+.calcHeader {
+  background-color: #37c2d0;
+  color: #fff;
+}
+.calcHeader .dayIndex {
+  background-color: transparent;
+}
+.naborDay {
+  background-color: #ff9534;
+  color: #fff;
+  width: 40px;
+  text-align: center;
+  border-radius: 30px;
+}
+.panjiDay {
+  background-color: #61c15b;
+  color: #fff;
+  width: 44px;
+  text-align: center;
+  border-radius: 30px;
 }
