@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import moment from "moment-jalaali";
 import _ from "lodash";
 import './App.css';
+moment.loadPersian()
 
 const ZDays = [
   { en: "urmazd", fr: "اورمزد" },
@@ -43,26 +44,52 @@ const extraZdays = [
   { en: "vahooshtoesh", fr: "وهشتواش" }
 ];
 const NaborsDay = [1, 11, 13, 20];
+const today = moment();
+const DayOfYear= today.format('jDDD');
+const currMonth = Math.ceil(DayOfYear/30);
+const todayIdx = (DayOfYear-1) % 30;
+const currMonthArr = (currMonth)=>  _.range((currMonth*30)-29,(currMonth*30)+1).map(day=>moment().add(day-DayOfYear,'day'))
+
 class App extends Component {
   state = {
-    month: 0
+    month: currMonth,
+    monthArr:currMonthArr(currMonth)
   };
+  setMonth=(month)=>{
+    this.setState({
+      month: month,
+      monthArr:currMonthArr(month)
+    })
+  }
+  nextMonth=()=>{
+    const {month} = this.state;
+    const newMonth = month +1;
+   this.setMonth(newMonth)
+  }  
+  prevMonth=()=>{
+    const {month} = this.state;
+    const newMonth = month -1;
+    this.setMonth(newMonth)
+  }
   setDate = idx => {
     this.setState({ dateIdx: idx });
   };
   render() {
-    // const { dateIdx } = this.state;
-    // const date = moment().add(dateIdx, "day");
-    // const dayInYear = parseInt(date.format("jDDD"));
-    // const ZDayName = dayInYear > 360 ? extraZdays[dayInYear % 5] : ZDays[dayInYear % 30];
-    // const isNabor = NaborsDay.includes(ZDayName);
-    // console.log(dayInYear, "sffsakgjha");
+    const {monthArr} = this.state;
     return (
       <div className="calcCont">
-      {ZDays.map((day,idx)=> (
-        <div className="calcRow" key={'zDay'+idx}>
+      <div className="navbar">
+        <button onClick={this.nextMonth}>بعدی</button>
+        <button onClick={this.prevMonth}>قبلی</button>
+      </div>
+      {monthArr.map((day,idx)=> (
+        <div className={`calcRow`} key={'zDay'+idx}>
           <span>{idx+1}</span>
-          <span>{day.fr}</span>
+          <span>{ZDays[idx].fr}</span>
+          <span>{day.format('dddd')}</span>
+          <span>{day.format('D MMMM')}</span>
+          <span>{day.format("jD jMMMM")}</span>
+          <span>{NaborsDay.includes(idx) && <p>نبر</p>}</span>
         </div>
       ))}
       </div>
