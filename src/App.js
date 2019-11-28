@@ -52,40 +52,46 @@ const ZDays = [
   { en: "asman", fr: "آسمان" },
   { en: "zamiyad", fr: "زامیاد" },
   { en: "mantraspand", fr: "مانترسپند" },
-  { en: "anaram", fr: "انارام" }
-];
-const extraZdays = [
+  { en: "anaram", fr: "انارام" },
   { en: "ahnavad", fr: "اهنود" },
   { en: "oshtavad", fr: "اشتود" },
   { en: "sepantamad", fr: "سپنتمد" },
   { en: "vahookhashatr", fr: "وهوخشتر" },
-  { en: "vahooshtoesh", fr: "وهشتواش" }
+  { en: "vahooshtoesh", fr: "وهشتواش" },
+  { en: "avardad", fr: "اورداد" },
 ];
 const NaborsDay = [1, 11, 13, 20];
 const today = moment();
+const CurrentYear = today.format('jYYYY');
 const DayOfYear= today.format('jDDD');
-const currMonth = Math.ceil(DayOfYear/30);
-const todayIdx = (DayOfYear-1) % 30;
 const isEven = (n) =>{
   n = Number(n);
   return n === 0 || !!(n && !(n%2));
 }
-const generateMonth = (month)=>{
-  const currMonth = month%13;
-  const isPanji = currMonth === 0;
-  const year = Math.floor(month*30/365);
-  const from = isPanji ? 361 : (currMonth*30)-29 + (year*365);
-  const to = isPanji ? 366 : (currMonth*30)+1  + (year*365);
+console.log( moment().add(-1,'month'),'sgjkshagak')
+const generateMonth = (fromCurrentMonth)=>{
+  const selectedMonth = moment().add(fromCurrentMonth*30, 'day');
+  const selectedDayOfYear = selectedMonth.format('jDDD');
+  const selectedMonthOfYear = selectedMonth.format('jM');
+  const isPanji = selectedMonthOfYear == 12;
+  const thisYearFormat = selectedMonth.format('jYYYY');
+  const year = thisYearFormat - CurrentYear;
+  let to = (Math.ceil(selectedDayOfYear/30)*30)+1 + (year*365);
+  const from =  to-30;
+  if(isPanji){
+    const isLeapYear = moment.jIsLeapYear(thisYearFormat)
+    console.log('leapYear',isLeapYear )
+    to = to + (isLeapYear ? 6 :5)
+  }
   const monthArr = _.range(from,to).map(day=>moment().add(day-DayOfYear,'day'));
-  console.log('monthhhhh',month, currMonth,isPanji,year,monthArr)
+  // console.log('monthhhhh',isLeapYear, isPanji, selectedMonthOfYear, fromCurrentMonth,selectedMonth,selectedDayOfYear, from, to, year )
     return {
-      month,
+      month: fromCurrentMonth,
       monthArr,
-      isPanji,
     }
 }
 class App extends Component {
-  state = {...generateMonth(currMonth)}
+  state = {...generateMonth(0)}
   setMonth=(month)=>{
     this.setState({...generateMonth(month)})
   }
@@ -103,7 +109,7 @@ class App extends Component {
     this.setState({ dateIdx: idx });
   };
   render() {
-    const {monthArr, isPanji} = this.state;
+    const {monthArr} = this.state;
     return (
       <div className="calcCont">
       <div className="navbar">
@@ -122,13 +128,13 @@ class App extends Component {
       {monthArr.map((day,idx)=> (
         <div className={`calcRow${isEven(idx) ? ' even' : ''}`} key={'zDay'+idx}>
           <span className="dayIndex">{persianNumb(idx+1)}</span>
-          <span className="wSmall">{isPanji ? extraZdays[idx].fr : ZDays[idx].fr}</span>
+          <span className="wSmall">{ZDays[idx].fr}</span>
           <span className="wSmall">{day.format('dddd')}</span>
           <span className="wLarge">{persianNumb(day.format('D MMMM YYYY'))}</span>
           <span className="wLarge">{persianNumb(day.format("jD jMMMM jYYYY"))}</span>
           <span className="wLarge">
-            {NaborsDay.includes(idx) && !isPanji && <span className="naborDay">نبر</span>}
-            {isPanji && <span className="panjiDay">پنجی</span>}
+            {NaborsDay.includes(idx) && <span className="naborDay">نبر</span>}
+            {idx>29 && <span className="panjiDay">پنجی</span>}
           </span>
         </div>
       ))}
