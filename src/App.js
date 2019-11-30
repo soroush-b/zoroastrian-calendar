@@ -68,7 +68,16 @@ const isEven = (n) =>{
   n = Number(n);
   return n === 0 || !!(n && !(n%2));
 }
-console.log( moment().add(-1,'month'),'sgjkshagak')
+const leapYearPassed = (years=[])=>{
+  const sortedYear = years.sort();
+  let leapYearPassed=0;
+  for (let i=sortedYear[0] ; i<sortedYear[1] ; i++ ){
+    if(moment.jIsLeapYear(i)){
+      leapYearPassed++
+    } 
+  }
+  return leapYearPassed;
+}
 const generateMonth = (fromCurrentMonth)=>{
   const selectedMonth = moment().add(fromCurrentMonth*30, 'day');
   const selectedDayOfYear = selectedMonth.format('jDDD');
@@ -76,15 +85,14 @@ const generateMonth = (fromCurrentMonth)=>{
   const isPanji = selectedMonthOfYear == 12;
   const thisYearFormat = selectedMonth.format('jYYYY');
   const year = thisYearFormat - CurrentYear;
-  let to = (Math.ceil(selectedDayOfYear/30)*30)+1 + (year*365);
+  const isLeapYear = moment.jIsLeapYear(thisYearFormat);
+  const leapPassed = leapYearPassed([parseInt(thisYearFormat) , parseInt(CurrentYear)]);
+  let to = (Math.ceil(selectedDayOfYear/30)*30)+1 + (year*365) +leapPassed ;
   const from =  to-30;
   if(isPanji){
-    const isLeapYear = moment.jIsLeapYear(thisYearFormat)
-    console.log('leapYear',isLeapYear )
     to = to + (isLeapYear ? 6 :5)
   }
   const monthArr = _.range(from,to).map(day=>moment().add(day-DayOfYear,'day'));
-  // console.log('monthhhhh',isLeapYear, isPanji, selectedMonthOfYear, fromCurrentMonth,selectedMonth,selectedDayOfYear, from, to, year )
     return {
       month: fromCurrentMonth,
       monthArr,
