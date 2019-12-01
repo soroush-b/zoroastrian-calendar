@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/zoroastrian-calendar/precache-manifest.d3574573866cb4fd473acbfc54d2f0f6.js"
+  "/zoroastrian-calendar/precache-manifest.dc7862ff2a248dfa9d874f746ef8e9de.js"
 );
 
 self.addEventListener('message', (event) => {

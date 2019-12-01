@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "56863e7a2b5990d8a3f3d1b3fdda4882",
+    "revision": "96df47b6ccce2d2af33725a1273f36db",
     "url": "/zoroastrian-calendar/index.html"
   },
   {
