@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/zoroastrian-calendar/static/css/main.99f7c874.chunk.css",
-    "main.js": "/zoroastrian-calendar/static/js/main.7ff737f4.chunk.js",
-    "main.js.map": "/zoroastrian-calendar/static/js/main.7ff737f4.chunk.js.map",
+    "main.js": "/zoroastrian-calendar/static/js/main.3eb29106.chunk.js",
+    "main.js.map": "/zoroastrian-calendar/static/js/main.3eb29106.chunk.js.map",
     "runtime-main.js": "/zoroastrian-calendar/static/js/runtime-main.1abbb96a.js",
     "runtime-main.js.map": "/zoroastrian-calendar/static/js/runtime-main.1abbb96a.js.map",
     "static/js/2.91a11a9e.chunk.js": "/zoroastrian-calendar/static/js/2.91a11a9e.chunk.js",
     "static/js/2.91a11a9e.chunk.js.map": "/zoroastrian-calendar/static/js/2.91a11a9e.chunk.js.map",
     "index.html": "/zoroastrian-calendar/index.html",
-    "precache-manifest.dc7862ff2a248dfa9d874f746ef8e9de.js": "/zoroastrian-calendar/precache-manifest.dc7862ff2a248dfa9d874f746ef8e9de.js",
+    "precache-manifest.4dc2f33c686e9fb579d0385b335c5f64.js": "/zoroastrian-calendar/precache-manifest.4dc2f33c686e9fb579d0385b335c5f64.js",
     "service-worker.js": "/zoroastrian-calendar/service-worker.js",
     "static/css/main.99f7c874.chunk.css.map": "/zoroastrian-calendar/static/css/main.99f7c874.chunk.css.map"
   },
@@ -16,6 +16,6 @@
     "static/js/runtime-main.1abbb96a.js",
     "static/js/2.91a11a9e.chunk.js",
     "static/css/main.99f7c874.chunk.css",
-    "static/js/main.7ff737f4.chunk.js"
+    "static/js/main.3eb29106.chunk.js"
   ]
 }
