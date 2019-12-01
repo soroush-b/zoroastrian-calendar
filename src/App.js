@@ -297,7 +297,7 @@ const ZMonthlyEvents = {
 const ZMonthlyHoliday= [0,7,14,22];
 const ZDays = [
   { en: "urmazd", fr: "اورمزد" },
-  { en: "vahman", fr: "بهمن" },
+  { en: "vahman", fr: "وهمن" },
   { en: "ardibehesht", fr: "اردیبهشت" },
   { en: "shahrivar", fr: "شهریور" },
   { en: "spandarmaz", fr: "سپندارمذ" },
@@ -324,7 +324,7 @@ const ZDays = [
   { en: "ashtad", fr: "اشتاد" },
   { en: "asman", fr: "آسمان" },
   { en: "zamiyad", fr: "زامیاد" },
-  { en: "mantraspand", fr: "مانترسپند" },
+  { en: "mantraspand", fr: "مانتره سپند" },
   { en: "anaram", fr: "انارام" },
   { en: "ahnavad", fr: "اهنود" },
   { en: "oshtavad", fr: "اشتود" },
