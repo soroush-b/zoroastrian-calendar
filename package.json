@@ -2,6 +2,7 @@
   "name": "zoroastrian-calendar",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://soroush-b.github.io/zoroastrian-calendar",
   "dependencies": {
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
@@ -14,7 +15,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
