@@ -1,24 +1,10 @@
 .calcCont {
   float: right;
   text-align: right;
+  width: 100%;
 }
 .calcRow span {
   display: inline-block;
-}
-.wXSmall {
-  width: 50px;
-}
-.wSmall {
-  width: 100px;
-}
-.wMedium {
-  width: 120px;
-}
-.wLarge {
-  width: 150px;
-}
-.wXLarge {
-  width: 400px;
 }
 .calcRow {
   background-color: #f0fbfc;
@@ -30,16 +16,26 @@
   background-color: #fff;
 }
 .dayIndex {
-  /* background-color: #9fe5ea;
-  color: #fff;
-  font-weight: 800;
-  border-radius: 50%;
-  text-align: center;
-  width: 35px;
-  height: 35px;
-  vertical-align: middle;
-  line-height: 35px; */
-  margin-left: 20px;
+  width: 5%;
+}
+.dayName {
+  width: 10%;
+}
+.weekName {
+  width: 10%;
+}
+.solarDay {
+  width: 15%;
+}
+.mildadiDay {
+  width: 15%;
+}
+.eventDetails {
+  width: 37%;
+}
+.bold {
+  font-weight: 900;
+  font-size: 1.1em;
 }
 .solarDayName {
   display: inline-block;
@@ -68,6 +64,7 @@
   font-size: 39px;
   display: inline-block;
   padding: 0;
+  cursor: pointer;
 }
 .calcHeader {
   background-color: #37c2d0;
@@ -122,6 +119,7 @@
   line-height: 53px;
   margin-bottom: 10px;
 }
+
 @media print {
   .no-print,
   .no-print * {

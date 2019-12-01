@@ -294,20 +294,6 @@ const ZMonthlyEvents = {
     fr: 'زیارت ستی پیر',
   }],
 }
-// const Month = [
-//   {fr:'فروردین'},
-//   {fr:'اردیبهشت'},
-//   {fr:'خرداد'},
-//   {fr:'تیر'},
-//   {fr:'امرداد'},
-//   {fr:'شهریور'},
-//   {fr:'مهر'},
-//   {fr:'آبان'},
-//   {fr:'آذر'},
-//   {fr:'دی'},
-//   {fr:'یهمن'},
-//   {fr:'اسفند'},
-// ]
 const ZMonthlyHoliday= [0,7,14,22];
 const ZDays = [
   { en: "urmazd", fr: "اورمزد" },
@@ -415,11 +401,11 @@ class App extends Component {
       <p className="monthName">{monthName}</p>
       <div className="calcRow calcHeader">
           <span className="dayIndex">روز</span>
-          <span className="wSmall">نام روز</span>
-          <span className="wSmall">هفته</span>
-          <span className="wLarge">شمسی</span>
-          <span className="wLarge">میلادی</span>
-          <span className="wLarge">رویدادها</span>
+          <span className="dayName">نام روز</span>
+          <span className="weekName">هفته</span>
+          <span className="solarDay">شمسی</span>
+          <span className="mildadiDay">میلادی</span>
+          <span className="eventDetails">رویدادها</span>
         </div>
 
       {monthArr.map((day,idx)=> {
@@ -431,11 +417,11 @@ class App extends Component {
         return (
           <div className={`calcRow${isEven(idx) ? ' even' : ''}${isZmonthlyHoliday ? ' zMonthlyHoliday': ''}${isHoliday ? ' holiday' : ''}`} key={'zDay'+idx}>
           <span className="dayIndex">{persianNumb(idx+1)}</span>
-          <span className="wSmall">{ZDays[idx].fr}</span>
-          <span className="wSmall">{day.format('dddd')}</span>
-          <span className="wLarge"><span className="solarDayName">{persianNumb(day.format("jD"))}</span>{persianNumb(day.format("jMMMM jYYYY"))}</span>
-          <span className="wLarge">{persianNumb(day.format('D MMMM YYYY'))}</span>
-          <span className="wXLarge">
+          <span className="dayName bold">{ZDays[idx].fr}</span>
+          <span className="weekName">{day.format('dddd')}</span>
+          <span className="solarDay"><span className="solarDayName">{persianNumb(day.format("jD"))}</span>{persianNumb(day.format("jMMMM jYYYY"))}</span>
+          <span className="mildadiDay">{persianNumb(day.format('D MMMM YYYY'))}</span>
+          <span className="eventDetails">
             {NaborsDay.includes(idx) && <span className="naborDay">نبر</span>}
             {idx>29 && <span className="panjiDay">پنجی</span>}
             {idx>29 && <span className="event">همس پت میدیم گاه</span>}
