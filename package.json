@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "http://soroush-b.github.io/zoroastrian-calendar",
   "dependencies": {
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "moment-jalaali": "^0.9.1",
     "react": "^16.12.0",
